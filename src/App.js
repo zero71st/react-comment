@@ -1,25 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './comments/Header';
+import MessageList from './comments/MessageList';
+import firebase from 'firebase';
+import MessageBox from './comments/MessageBox';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    
+    var config = {
+      apiKey: "AIzaSyBx4BOSEvPUH8Er4905Q6shu61fEPN6BQ0",
+      authDomain: "mycomment-9e778.firebaseapp.com",
+      databaseURL: "https://mycomment-9e778.firebaseio.com",
+      projectId: "mycomment-9e778",
+      storageBucket: "mycomment-9e778.appspot.com",
+      messagingSenderId: "208922274925"
+    };
+
+    firebase.initializeApp(config);
+  }
+  
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="container">
+        <Header title="Simple Firebase App" />
+        <div className="columns">
+          <div className="column is-3"></div>
+          <div className="column is-6">
+            <MessageList db={firebase} />
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column is-3"></div>
+          <div className="column is-6">
+            <MessageBox db={firebase} />
+          </div>
+        </div>
       </div>
     );
   }
