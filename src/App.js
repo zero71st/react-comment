@@ -4,10 +4,14 @@ import MessageList from './comments/MessageList';
 import firebase from 'firebase';
 import MessageBox from './comments/MessageBox';
 
+var myColumn = {
+  border:1
+}
+
 class App extends Component {
   constructor(props) {
     super(props)
-    
+
     var config = {
       apiKey: "AIzaSyBx4BOSEvPUH8Er4905Q6shu61fEPN6BQ0",
       authDomain: "mycomment-9e778.firebaseapp.com",
@@ -19,21 +23,27 @@ class App extends Component {
 
     firebase.initializeApp(config);
   }
-  
+
   render() {
     return (
-      <div className="container">
-        <Header title="Simple Firebase App" />
-        <div className="columns">
-          <div className="column is-3"></div>
-          <div className="column is-6">
-            <MessageList db={firebase} />
+      <div className="section">
+        <div className="container">
+          <Header title="My First firebase program" />
+
+          {/* List */}
+          <div className="columns">
+            <div className="column is-2"></div>
+            <div className="column is-8">
+              <MessageList db={firebase} />
+            </div>
           </div>
-        </div>
-        <div className="columns">
-          <div className="column is-3"></div>
-          <div className="column is-6">
-            <MessageBox db={firebase} />
+
+          {/* Text box */}
+          <div className="columns">
+            <div className="column is-2"></div>
+            <div className="column is-8">
+              <MessageBox db={firebase} />
+            </div>
           </div>
         </div>
       </div>

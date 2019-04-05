@@ -7,6 +7,7 @@ const Modal = ({ children, updateFunction, closeModal, modalState, title }) => {
     if (!modalState) {
         return null
     }
+
     return (
         <div className="modal is-active">
             <div className="modal-background" onClick={closeModal} />
@@ -23,7 +24,7 @@ const Modal = ({ children, updateFunction, closeModal, modalState, title }) => {
                 <footer className="modal-card-foot">
                     <button className="button is-success"
                         onClick={updateFunction}>
-                        Save changes</button>
+                        Save</button>
                     <button className="button"
                         onClick={closeModal}>
                         Cancel</button>
@@ -42,10 +43,12 @@ export default class Message extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.updateFunction = this.updateFunction.bind(this);
+
         this.state = {
             modalState: false,
             messageUpdate: props.message
         };
+        
         this.toggleModal = this.toggleModal.bind(this);
     }
 
@@ -92,7 +95,7 @@ export default class Message extends Component {
                     onClick={this.toggleModal}>
                     Update
                 </a>
-                
+
                 <Modal
                     updateFunction={this.updateFunction}
                     closeModal={this.toggleModal}
