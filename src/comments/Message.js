@@ -43,8 +43,8 @@ export default class Message extends Component {
 
         this.updateFunction = this.updateFunction.bind(this);
         this.state = {
-          modalState: false,
-          messageUpdate: props.msg
+            modalState: false,
+            messageUpdate: props.message
         };
         this.toggleModal = this.toggleModal.bind(this);
     }
@@ -68,30 +68,31 @@ export default class Message extends Component {
         });
     }
 
-    updateFunction(e){
+    updateFunction(e) {
         e.preventDefault();
-        var obj = {message: this.state.messageUpdate};
+        var obj = { message: this.state.messageUpdate };
         let dbCon = this.props.db.database().ref('/messages');
         dbCon.child(this.props.msgKey).update(obj)
-             .then(() => this.toggleModal());
+            .then(() => this.toggleModal());
     }
 
     render() {
         return (
             <div>
                 {this.props.message}
-                
+
                 <a style={deleteBtnStyle}
                     className="button is-danger"
                     onClick={this.onClickDelete}>
                     Delete
                 </a>
-                
+
                 <a style={deleteBtnStyle}
                     className="button is-info"
                     onClick={this.toggleModal}>
                     Update
                 </a>
+                
                 <Modal
                     updateFunction={this.updateFunction}
                     closeModal={this.toggleModal}

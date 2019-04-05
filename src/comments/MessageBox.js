@@ -8,8 +8,12 @@ export default class MessageBox extends Component {
         this.onChange = this.onChange.bind(this);
         this.onKeyup = this.onKeyup.bind(this);
         this.state = {
-            message: ''
+            message:''
         };
+
+        this.setState({message:this.props.message});
+
+        console.log(this.state.message);
     }
 
     onChange(e) {
